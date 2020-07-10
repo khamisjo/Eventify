@@ -1,15 +1,39 @@
 import React ,{useState}from 'react';
 import {View, StyleSheet,Text,Button,TextInput} from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import RNPickerSelect from 'react-native-picker-select';
 
+const categories = [
+  {
+    label: 'Entertainment',
+    value: 'Entertainment',
+  },
+  {
+    label: 'Food',
+    value: 'Food',
+  },
+  {
+    label: 'Religous',
+    value: 'Religous',
+  },
+  {
+    label: 'Academic',
+    value: 'Academic',
+  },
+  {
+    label: 'Other',
+    value: 'Other',
+  },
+];
 const CreateEventScreen=({navigation})=>{
+    const [categoryState,setCategoryState]=useState('')
     const [eventTitle, setEventTitle] = useState('');
     //states for Start/End times
     const [flag,setFlag]=useState('')
     const [eventStartTime, setEventStartTime] = useState('');
     const [eventEndTime, setEventEndTime] = useState('');
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
- 
+  
   const showDatePicker = (flag) => {
     setDatePickerVisibility(true);
     setFlag(flag)
@@ -42,6 +66,7 @@ const CreateEventScreen=({navigation})=>{
     time=time.split(':')
     return dateArray[0]+' '+dateArray[1]+' '+ dateArray[2]+' '+dateArray[3]+' '+time[0]+":"+time[1]
   }
+  
     return (
         <View>
             <TextInput
@@ -57,6 +82,12 @@ const CreateEventScreen=({navigation})=>{
                 onConfirm={handleStartConfirm}
                 onCancel={hideDatePicker}
             />
+           <RNPickerSelect
+            items={categories}
+            onValueChange={value => {
+            setCategoryState(categoryState)}}
+          />
+            
         </View>
          
       
