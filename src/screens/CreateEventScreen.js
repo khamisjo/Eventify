@@ -4,23 +4,37 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const CreateEventScreen=({navigation})=>{
     const [eventTitle, setEventTitle] = useState('');
+    //states for Start/End times
+    const [flag,setFlag]=useState('')
     const [eventStartTime, setEventStartTime] = useState('');
     const [eventEndTime, setEventEndTime] = useState('');
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
  
-  const showDatePicker = () => {
+  const showDatePicker = (flag) => {
     setDatePickerVisibility(true);
+    setFlag(flag)
   };
  
   const hideDatePicker = () => {
     setDatePickerVisibility(false);
   };
  
-  const handleConfirm = (date) => {
-   //if(!eventStartTime) setEventStartTime(date)
+  const handleEndConfirm = (date) => {
     setEventEndTime(date)
     hideDatePicker();
   };
+  const handleStartConfirm = (date) => {
+ 
+     if(flag==='start'){
+         setEventStartTime(date)
+         setFlag('')
+     }
+     if (flag ==='end'){
+         setEventEndTime(date)
+        setFlag('')
+     }
+     hideDatePicker();
+   };
   const dateParser=(date)=>{
       if(!date) return 
     let dateArray=date.split(" ")
@@ -35,12 +49,12 @@ const CreateEventScreen=({navigation})=>{
                 onChangeText={setEventTitle}
                 value={eventTitle}
             />
-            <Text onPress={showDatePicker}>Start Time: {dateParser(eventStartTime.toString())}</Text>
-            <Text onPress={showDatePicker}>End Time: {dateParser(eventEndTime.toString())}</Text>
+            <Text onPress={date=>showDatePicker('start',date)}>Start Time: {dateParser(eventStartTime.toString())}</Text>
+            <Text onPress={date=>showDatePicker('end',date)}>End Time: {dateParser(eventEndTime.toString())}</Text>
             <DateTimePickerModal
                 isVisible={isDatePickerVisible}
                 mode="datetime"
-                onConfirm={handleConfirm}
+                onConfirm={handleStartConfirm}
                 onCancel={hideDatePicker}
             />
         </View>
