@@ -1,5 +1,5 @@
 import React ,{useState}from 'react';
-import {View, StyleSheet,Text,Button,TextInput} from 'react-native';
+import {View, StyleSheet,Text,Button,TextInput,Switch} from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import RNPickerSelect from 'react-native-picker-select';
 
@@ -26,8 +26,10 @@ const categories = [
   },
 ];
 const CreateEventScreen=({navigation})=>{
+    const [switchState, setSwitch] = useState(false);
     const [categoryState,setCategoryState]=useState('')
-    const [eventTitle, setEventTitle] = useState('');
+    const [eventTitle, setEventTitle] = useState('Event Title');
+    const [eventDescription, setDescription] = useState('Event Description');
     //states for Start/End times
     const [flag,setFlag]=useState('')
     const [eventStartTime, setEventStartTime] = useState('');
@@ -87,9 +89,21 @@ const CreateEventScreen=({navigation})=>{
             onValueChange={value => {
             setCategoryState(categoryState)}}
           />
-            
+          <Switch
+            trackColor={{ false: "#767577", true: "#81b0ff" }}
+            thumbColor={switchState ? "#f5dd4b" : "#f4f3f4"}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={setSwitch}
+            value={switchState}
+          />
+          <TextInput
+                style={styles.textInput}
+                onChangeText={setDescription}
+                value={eventDescription}
+          />
+         <Text>Implement Add Flyer Here</Text>
         </View>
-         
+       
       
     );
 };
