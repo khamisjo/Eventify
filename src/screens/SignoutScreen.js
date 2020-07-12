@@ -7,7 +7,7 @@ const SignoutScreen=({navigation})=>{
             <Text style={{fontSize:48}}> SignoutScreen </Text>
             <Button 
                 title="Go to Sign in/out "
-                onPress={()=>navigation.navigate('Signup')}
+                onPress={()=>navigation.navigate('Signin')}
             />
         </View>
     )

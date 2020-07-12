@@ -3,7 +3,7 @@ import { Text,StyleSheet,Image} from 'react-native';
 import {Input,Button,SocialIcon} from 'react-native-elements';
 import Spacer from '../components/Spacer';
 const FB_API_KEY="123"
-const Google_API_KEY="234"
+const Google_APP_ID_KEY="234"
 const AuthForm=({signingOption,onSubmit})=>{
     const [email,setEmail] = useState('');
     const [password,setPassword]= useState('');

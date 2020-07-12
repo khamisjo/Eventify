@@ -6,30 +6,30 @@ import RNPickerSelect from 'react-native-picker-select';
 const categories = [
   {
     label: 'Entertainment',
-    value: 'Entertainment',
+    value: 'entertainment',
   },
   {
     label: 'Food',
-    value: 'Food',
+    value: 'food',
   },
   {
     label: 'Religous',
-    value: 'Religous',
+    value: 'religous',
   },
   {
     label: 'Academic',
-    value: 'Academic',
+    value: 'academic',
   },
   {
     label: 'Other',
-    value: 'Other',
+    value: 'other',
   },
 ];
 const CreateEventScreen=({navigation})=>{
     const [switchState, setSwitch] = useState(false);
     const [categoryState,setCategoryState]=useState('')
-    const [eventTitle, setEventTitle] = useState('Event Title');
-    const [eventDescription, setDescription] = useState('Event Description');
+    const [eventTitle, setEventTitle] = useState('');
+    const [eventDescription, setDescription] = useState('');
     //states for Start/End times
     const [flag,setFlag]=useState('')
     const [eventStartTime, setEventStartTime] = useState('');
@@ -70,11 +70,12 @@ const CreateEventScreen=({navigation})=>{
   }
   
     return (
-        <View>
+        <View header="none">
             <TextInput
                 style={styles.textInput}
                 onChangeText={setEventTitle}
                 value={eventTitle}
+                placeholder={"Event Title"}
             />
             <Text onPress={date=>showDatePicker('start',date)}>Start Time: {dateParser(eventStartTime.toString())}</Text>
             <Text onPress={date=>showDatePicker('end',date)}>End Time: {dateParser(eventEndTime.toString())}</Text>
@@ -100,13 +101,18 @@ const CreateEventScreen=({navigation})=>{
                 style={styles.textInput}
                 onChangeText={setDescription}
                 value={eventDescription}
+                placeholder={"Event Description"}
           />
-         <Text>Implement Add Flyer Here</Text>
+         <Button
+           title="Create Flyer"
+           onPress={()=>navigation.navigate('CreateFlyer')}
+         />
         </View>
        
       
     );
 };
+
 
 const styles = StyleSheet.create({
     textInput: {
