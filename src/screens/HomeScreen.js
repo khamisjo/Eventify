@@ -29,6 +29,7 @@ const HomeScreen=({navigation})=>{
                 term={term}
                 onTermChange={newTerm=>setTerm(newTerm)}
                 onTermSubmit={()=>console.log('Fetch requestd event from my API')}
+                placeholder={'Search Events'}
             />
             <Card
                 title='HELLO WORLD'
