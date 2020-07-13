@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "devToolsPort": 19039,
+=======
+  "devToolsPort": 19034,
+>>>>>>> 74a56d99be062d3aeb8c216307a9f9c180ee0d18
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
