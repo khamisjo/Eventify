@@ -53,8 +53,10 @@ const styles = StyleSheet.create({
         paddingLeft:10
     },
     logo: {
-        width: 200,
-        height: 200,
+        width: 300,
+        height: 300,
+        borderWidth:5,
+        borderColor:'white'
       },
 });
 
