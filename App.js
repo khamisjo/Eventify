@@ -26,7 +26,8 @@ const switchNavigator = createSwitchNavigator({
       Notifications:NotificationsScreen,
       creationFlow:createStackNavigator({
         CreateEvent:CreateEventScreen,
-        CreateFlyer:CreateFlyerScreen
+        CreateFlyer:createStackNavigator({
+        CreateFlyer:CreateFlyerScreen})
       },{headerMode:'none'})
     },{headerMode:'none'}),
     Map:MapScreen,
