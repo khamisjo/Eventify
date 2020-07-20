@@ -13,8 +13,11 @@ import MapScreen from './src/screens/MapScreen';
 import NotificationsScreen from './src/screens/NotificationsScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import HomeScreen from './src/screens/HomeScreen';
-
+import {Provider as AuthProvider} from './src/context/AuthContext'
+import {setNavigator} from './src/navigationRef'
+import LoadingScreen from './src/screens/LoadingScreen'
 const switchNavigator = createSwitchNavigator({
+  Loading: LoadingScreen,
   loginFlow: createStackNavigator({
     Signin:SigninScreen,
     Signup:SignupScreen
@@ -40,4 +43,13 @@ const switchNavigator = createSwitchNavigator({
   })
 })
 
-export default createAppContainer(switchNavigator);
+const App = createAppContainer(switchNavigator);
+
+export default()=>{
+  return (
+    <AuthProvider>
+      <App ref={(navigator)=>setNavigator(navigator)}/> 
+    </AuthProvider>
+  )
+}
+

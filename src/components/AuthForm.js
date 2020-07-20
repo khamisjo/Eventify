@@ -2,15 +2,16 @@ import React, {useState} from 'react';
 import { Text,StyleSheet,Image} from 'react-native';
 import {Input,Button,SocialIcon} from 'react-native-elements';
 import Spacer from '../components/Spacer';
+import { State } from 'react-native-gesture-handler';
 const FB_API_KEY="123"
 const Google_APP_ID_KEY="234"
-const AuthForm=({signingOption,onSubmit})=>{
+const AuthForm=({signingOption,onSubmit,errorMessage})=>{
     const [email,setEmail] = useState('');
     const [password,setPassword]= useState('');
 
     return (
         <>
-              <Image 
+            <Image 
                 style={styles.titleLogo}
                 source={require('../../Design/chopsic.png')}
             />
@@ -32,10 +33,11 @@ const AuthForm=({signingOption,onSubmit})=>{
             autoCapitalize="none"
             secureTextEntry
            />
+           {errorMessage ?(<Text style={styles.errorMessage}>{errorMessage}</Text>) : null}
            <Button 
                 title={signingOption}
                 style={styles.button}
-                onPress={onSubmit}
+                onPress={() => onSubmit({ email, password })}
            />
            <Spacer/>
            
@@ -73,7 +75,13 @@ const styles = StyleSheet.create({
     },
     container:{
         flex:1
-    }
+    }, 
+    errorMessage: {
+        fontSize: 16,
+        color: 'red',
+        marginLeft: 15,
+        marginTop: 15
+      }
 });
 
 export default AuthForm

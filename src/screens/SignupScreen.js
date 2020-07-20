@@ -1,14 +1,20 @@
-import React from 'react';
+import React, {useContext,useEffect} from 'react';
 import {View,StyleSheet} from 'react-native';
 import NavLink from '../components/NavLink'
 import AuthForm from '../components/AuthForm'
+import {Context as AuthContext} from '../context/AuthContext'
+import { NavigationEvents } from 'react-navigation';
 const SignupScreen=({navigation})=>{
-
+  const { state, signup,clearErrorMessage,tryLocalSignin } = useContext(AuthContext);
     return (
         <View >
+          <NavigationEvents
+            onWillFocus={clearErrorMessage}
+          />
           <AuthForm
             signingOption="Sign up"
-            onSubmit={()=>navigation.navigate('mainFlow')}
+            onSubmit={signup}
+            errorMessage={state.errorMessage}
           />
           <NavLink
             routeName ="Signin"

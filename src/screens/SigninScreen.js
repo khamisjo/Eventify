@@ -1,18 +1,25 @@
-import React from 'react';
+import React,{useContext,useEffect} from 'react';
 import {View,StyleSheet} from 'react-native';
 import NavLink from '../components/NavLink'
 import AuthForm from '../components/AuthForm'
+import {NavigationEvents} from 'react-navigation'
 import {SocialIcon} from 'react-native-elements';
 import {Facebook_logIn,Google_logIn} from '../components/ExternalAuth'
+import {Context as AuthContext} from '../context/AuthContext'
 
 const SigninScreen=({navigation})=>{
-
+  const { state, signin , clearErrorMessage} = useContext(AuthContext);
+  
     return (
         <View >
+          <NavigationEvents   
+            onWillBlur={clearErrorMessage}
+            onWillFocus={clearErrorMessage}
+          />
           <AuthForm
             signingOption="Sign In"
-           // onSubmitFB={()=>FBlogIn(navigation.navigate)}
-            onSubmit={()=>navigation.navigate('mainFlow')}
+            onSubmit={signin}
+            errorMessage={state.errorMessage}
           />
           <NavLink
             routeName ="Signup"
