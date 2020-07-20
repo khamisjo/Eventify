@@ -1,6 +1,6 @@
 import React,{useContext} from 'react';
 import {View, StyleSheet,Text,Button} from 'react-native';
-import {Context as AuthContext} from '../context/AuthContext'
+import { Context as AuthContext } from '../context/AuthContext';
 const SignoutScreen=({navigation})=>{
     const {signout} = useContext(AuthContext)
     return (
